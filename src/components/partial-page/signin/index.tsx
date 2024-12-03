@@ -24,7 +24,6 @@ interface SignInFormValues {
 const PartialSignInPage = () => {
   const route = useRouter();
   const isLaptop = useMediaQuery("(max-width:1300px) ");
-  const [passwordScore, setPasswordScore] = useState<number>(0);
 
   const formik = useFormik<SignInFormValues>({
     initialValues: {
@@ -39,14 +38,14 @@ const PartialSignInPage = () => {
     validateOnBlur: false,
   });
 
-  useEffect(() => {
-    formik.setFieldValue("passwordScore", passwordScore, false);
-  }, [passwordScore]);
+  // useEffect(() => {
+  //   formik.setFieldValue("passwordScore", passwordScore, false);
+  // }, [passwordScore]);
 
   return (
     <Grid container justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
       {/* Wrap the form content in the Paper component */}
-      <Paper elevation={3} sx={{ padding: "2rem", width: isLaptop ? "70%" : "20%" }}>
+      <Paper elevation={3} sx={{ padding: "2rem", width: isLaptop ? "40%" : "20%" }}>
         <form
           onSubmit={formik.handleSubmit}
           style={{
@@ -100,7 +99,7 @@ const PartialSignInPage = () => {
               Forgot Password?
             </Typography>
           </div>
-          <BasicButton type="submit" onClick={() => route.push("/signup")}>
+          <BasicButton type="submit">
             Sign In
           </BasicButton>
         </form>

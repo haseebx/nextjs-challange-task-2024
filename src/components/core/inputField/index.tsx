@@ -52,7 +52,7 @@ const CustomInputField = ({
   min,
   onBlur, // Use the onBlur prop here
 }: ICustomField) => {
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false); // Initialize with hidden password
   const handleClickShowPassword = () =>
     setShowPassword((showPassword) => !showPassword);
 
@@ -64,7 +64,7 @@ const CustomInputField = ({
         aria-describedby="outlined-weight-helper-text"
         name={name}
         placeholder={placeholder}
-        {...(type === 'number' && { min })}
+        {...(type === "number" && { min })}
         startAdornment={
           startAdornmentIcon ? (
             <Image
@@ -94,12 +94,12 @@ const CustomInputField = ({
             </InputAdornment>
           )
         }
-        value={value}
+        value={formik ? formik.values[name] : value} // Source value from Formik or fallback to prop
         type={type === "password" ? (showPassword ? "text" : "password") : type}
         onChange={
-          handleChange
-            ? (e) => handleChange(e.target.value)
-            : formik?.handleChange
+          formik
+            ? formik.handleChange // Use Formik's handler if available
+            : (e) => handleChange?.(e.target.value) // Otherwise, use custom handler
         }
         onKeyDown={(e) => handleKeyDown && handleKeyDown(e)}
         onBlur={onBlur} // Apply the onBlur prop to the input
@@ -110,10 +110,11 @@ const CustomInputField = ({
         height={height}
       />
       {formik?.errors[name] && (
-        <ErrorTypography>{formik?.errors[name]}</ErrorTypography>
+        <ErrorTypography>{formik.errors[name]}</ErrorTypography>
       )}
     </Box>
   );
 };
+
 
 export default CustomInputField;
