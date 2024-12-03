@@ -3,7 +3,6 @@ import NextTopLoader from "nextjs-toploader";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "@mui/material";
 import theme from "@/constants/theme";
-import StoreProvider from "@/store/StoreProvider";
 import StyledComponentsRegistry from "../../lib/registry";
 import CustomToastContainer from "@/components/core/toast/index.styles";
 import "./globals.css";
@@ -24,7 +23,6 @@ export default function RootLayout({
         suppressContentEditableWarning={false}
       >
         <StyledComponentsRegistry>
-          <StoreProvider>
             <NextTopLoader
               color="white"
               zIndex={1600}
@@ -40,7 +38,6 @@ export default function RootLayout({
             />
             <CustomToastContainer />
             <ThemeProvider theme={theme}>{children}</ThemeProvider>
-          </StoreProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

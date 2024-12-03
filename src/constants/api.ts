@@ -3,8 +3,6 @@ export const REQUEST_HEADERS = {
   // "ngrok-skip-browser-warning": true,
 };
 // 
-export const API_BASE_URL = "https://qforrice.com/api";
-// export const API_BASE_URL = "https://5fb6-221-120-236-55.ngrok-free.app/api";
-// export const API_BASE_URL = "http://localhost:8000/api";
+export const API_BASE_URL = "http://localhost:4000/api";
 // Auth routes
-export const API_SIGNIN = "/users/login";
+export const API_SIGNIN = "user/login";
